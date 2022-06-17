@@ -38,7 +38,7 @@ author:
   name      : TianCheng92
   url       :
   avatar    : https://avatars.githubusercontent.com/u/42594679?v=4 # path or url of avatar image (square)
-  bio       : I am an amazing person.
+  bio       : 程序员的事儿没有一句 rm -rf /* 解决不了的，如果有就加上 sudo ！
   email     : kiritoeva@icloud.com
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
@@ -223,3 +223,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+
+collections:
+  - golang_package
+  - golang_modules

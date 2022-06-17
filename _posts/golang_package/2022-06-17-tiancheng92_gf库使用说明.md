@@ -1,6 +1,7 @@
 ---
 layout: article
-title: tiancheng92/gf库详解
+title: tiancheng92/gf库使用说明
+collection: golang_package
 show_author_profile: true
 ---
 
