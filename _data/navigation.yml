@@ -11,7 +11,7 @@ header:
     zh-CN   : *ZH_HANS
     zh-SG   : *ZH_HANS
     # @end locale config
-    url: /golang_package.html
+    url: /_golang_package.html
 
   - titles:
       # @start locale config
