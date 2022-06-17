@@ -201,10 +201,38 @@ exclude:
   - /test
   - /vendor
 
+collections:
+  - golang_package
+  - golang_modules
+
 defaults:
   - scope:
       path: ""
       type: posts
+    values:
+      layout: article
+      sharing: true
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
+  - scope:
+      path: ""
+      type: golang_package
+    values:
+      layout: article
+      sharing: true
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
+  - scope:
+      path: ""
+      type: golang_modules
     values:
       layout: article
       sharing: true
@@ -223,7 +251,3 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
-
-collections:
-  - golang_package
-  - golang_modules
