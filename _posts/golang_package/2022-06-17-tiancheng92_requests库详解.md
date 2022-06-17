@@ -1,12 +1,12 @@
 ---
 layout: article
-title: requests包详解
+title: tiancheng92/requests库详解
 show_author_profile: true
-mode: immersive
-mathjax: true
 ---
 
 # [requests](https://github.com/tiancheng92/requests)
+
+<!--more-->
 
 [![Build Status](https://github.com/tiancheng92/requests/workflows/Build/badge.svg)](https://github.com/tiancheng92/requests/actions)
 
