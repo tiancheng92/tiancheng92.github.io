@@ -6,8 +6,6 @@ show_author_profile: true
 
 # [gf - Generic Functions For Go 1.18+](https://github.com/tiancheng92/gf)
 
-<!--more-->
-
 [![Build Status](https://github.com/tiancheng92/gf/workflows/Build/badge.svg)](https://github.com/tiancheng92/gf/actions)
 [![Test Status](https://github.com/tiancheng92/gf/workflows/Test/badge.svg)](https://github.com/tiancheng92/gf/actions)
 
@@ -17,6 +15,8 @@ show_author_profile: true
 ## 什么是gf包？
 
 * gf包 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
+
+<!--more-->
 
 ## 使用方法
 
