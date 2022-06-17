@@ -226,4 +226,4 @@ plugins:
 
 collections:
   - golang_package
-  - golang_modules
+  - _golang_modules
