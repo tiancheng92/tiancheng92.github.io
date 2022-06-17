@@ -4,9 +4,7 @@ title: tiancheng92/gf库使用说明
 show_author_profile: true
 ---
 
-# gf - Generic Functions For Go 1.18+
-
-## 项目简介
+# 项目简介
 * gf包 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
 * 项目地址：[tiancheng92/gf](https://github.com/tiancheng92/gf)
 <!--more-->
@@ -14,14 +12,14 @@ show_author_profile: true
 注意：部分方法仅可在Go版本大于等于1.18时使用！
 {:.warning}
 
-## 使用方法
+# 使用方法
 ```shell
 go get -u github.com/tiancheng92/gf
 ```
 
-## gf包方法详解
+# gf包方法详解
 
-### 字符串相关
+## 字符串相关
 
 | 函数名              | 描述                            |
 |:-----------------|-------------------------------|
@@ -36,7 +34,7 @@ go get -u github.com/tiancheng92/gf
 * Example：[example/main.go](https://github.com/tiancheng92/gf/blob/main/example/main.go)
 
 
-### 浮点数相关
+## 浮点数相关
 注意：以下方法均使用泛型实现，可以用于任意底层类型为float64或float32的类型
 {:.warning}
 
@@ -49,7 +47,7 @@ go get -u github.com/tiancheng92/gf
 * Example：[example/main.go](https://github.com/tiancheng92/gf/blob/main/example/main.go)
 
 
-### 切片相关
+## 切片相关
 注意：以下方法均使用泛型实现，可以用于任意类型的数组。
 {:.warning}
 
@@ -73,7 +71,7 @@ go get -u github.com/tiancheng92/gf
 * Test：[array_test.go](https://github.com/tiancheng92/gf/blob/main/array_test.go)
 * Example：[example/main.go](https://github.com/tiancheng92/gf/blob/main/example/main.go)
 
-### URL相关
+## URL相关
 
 | 函数名       | 描述                                    |
 |:----------|---------------------------------------|
