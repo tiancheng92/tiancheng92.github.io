@@ -1,17 +1,17 @@
 header:
   - titles:
-    # @start locale config
-    en      : &EN       Golang Package
-    en-GB   : *EN
-    en-US   : *EN
-    en-CA   : *EN
-    en-AU   : *EN
-    zh-Hans : &ZH_HANS  Golang库
-    zh      : *ZH_HANS
-    zh-CN   : *ZH_HANS
-    zh-SG   : *ZH_HANS
-    # @end locale config
-    url: /golang_package.html
+      # @start locale config
+      en      : &EN       Golang Package
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
+      zh-Hans : &ZH_HANS  Golang库
+      zh      : *ZH_HANS
+      zh-CN   : *ZH_HANS
+      zh-SG   : *ZH_HANS
+      # @end locale config
+      url: /golang_package.html
 
   - titles:
       # @start locale config
