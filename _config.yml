@@ -214,31 +214,6 @@ defaults:
       show_edit_on_github: false
       show_subscribe: false
       pageview: true
-  - scope:
-      path: ""
-      type: golang_package
-    values:
-      layout: article
-      sharing: false
-      license: false
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_subscribe: false
-      pageview: true
-  - scope:
-      path: ""
-      type: golang_modules
-    values:
-      layout: article
-      sharing: false
-      license: false
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_subscribe: false
-      pageview: true
-
 
 ## => Plugins
 ##############################
@@ -247,7 +222,3 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
-
-collections:
-  - golang_package
-  - golang_modules
