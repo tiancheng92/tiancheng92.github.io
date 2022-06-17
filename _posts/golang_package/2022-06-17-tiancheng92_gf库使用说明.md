@@ -4,22 +4,17 @@ title: tiancheng92/gf库使用说明
 show_author_profile: true
 ---
 
-# [gf - Generic Functions For Go 1.18+](https://github.com/tiancheng92/gf)
+# gf - Generic Functions For Go 1.18+
 
-[![Build Status](https://github.com/tiancheng92/gf/workflows/Build/badge.svg)](https://github.com/tiancheng92/gf/actions)
-[![Test Status](https://github.com/tiancheng92/gf/workflows/Test/badge.svg)](https://github.com/tiancheng92/gf/actions)
+## 项目简介
+* gf包 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
+* 项目地址：[tiancheng92/gf](https://github.com/tiancheng92/gf)
+<!--more-->
 
 注意：部分方法仅可在Go版本大于等于1.18时使用！
 {:.warning}
 
-## 什么是gf包？
-
-* gf包 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
-
-<!--more-->
-
 ## 使用方法
-
 ```shell
 go get -u github.com/tiancheng92/gf
 ```
