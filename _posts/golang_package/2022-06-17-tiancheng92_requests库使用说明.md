@@ -55,7 +55,7 @@ go get -u github.com/tiancheng92/requests
 成功请求远端数据后，会返回一个response对象，该对象包含了请求的状态码（Response.StatusCode）、请求头(StatusCode.Header)、响应体(Response.Body)、原生响应体（Response.RawResponse）。
 {:.info}
 
-## ResponseBody（响应体）
+### ResponseBody（响应体）
 
 | 函数签名                                      | 描述                               |
 |-------------------------------------------|----------------------------------|
