@@ -53,21 +53,21 @@ go get -u github.com/tiancheng92/gf
 注意：以下方法均使用泛型实现，可以用于任意类型的数组。
 {:.warning}
 
-| 函数签名                                                                           | 描述                                  |
-|:-------------------------------------------------------------------------------|-------------------------------------|
-| func ArrayDeduplicate[T comparable](array []T) []T                             | 数组去重                                |
-| func ArrayEqual[T any](array1, array2 []T) bool                                | 数组比较                                |
-| func ArrayContains[T any](array []T, val T) bool                               | 查询数组是否包含指定元素                        |
-| func ArrayIntersect[T comparable](array1, array2 []T) []T                      | 两个数组取交集                             |
-| func ArrayUnion[T comparable](array1, array2 []T) []T                          | 两个数组取并集                             |
-| func ArrayDifference[T comparable](array1, array2 []T) []T                     | 两个数组取差集                             |
-| func ArrayFilter[T any](array []T, predicate func(T) bool) []T                 | 使用函数对数组进行过滤（过滤函数签名为：func(any) bool） |
-| func ArrayReverse[T any](array []T) []T                                        | 数组反转                                |
-| func ArrayBubbleSort[T any](array []T, less func(array []T, i, j int) bool)    | 数组进行冒泡排序（仅需实现less方法）                |
-| func ArrayInsertionSort[T any](array []T, less func(array []T, i, j int) bool) | 数组进行插入排序（仅需实现less方法）                |
-| func ArrayHeapSort[T any](array []T, less func(array []T, i, j int) bool)      | 数组进行堆排序（仅需实现less方法）                 |
-| func ArrayQuickSort[T any](array []T, less func(array []T, i, j int) bool)     | 数组进行快速排序（仅需实现less方法）                |
-| func ArraySort[T any](array []T, less func(array []T, i, j int) bool)          | 数组进行go原生排序（仅需实现less方法）              |
+| 函数签名                                                                             | 描述                                  |
+|:---------------------------------------------------------------------------------|-------------------------------------|
+| func ArrayDeduplicate\[T comparable\](array []T) []T                             | 数组去重                                |
+| func ArrayEqual\[T any\](array1, array2 []T) bool                                | 数组比较                                |
+| func ArrayContains\[T any\](array []T, val T) bool                               | 查询数组是否包含指定元素                        |
+| func ArrayIntersect\[T comparable\](array1, array2 []T) []T                      | 两个数组取交集                             |
+| func ArrayUnion\[T comparable\](array1, array2 []T) []T                          | 两个数组取并集                             |
+| func ArrayDifference\[T comparable\](array1, array2 []T) []T                     | 两个数组取差集                             |
+| func ArrayFilter\[T any\](array []T, predicate func(T) bool) []T                 | 使用函数对数组进行过滤（过滤函数签名为：func(any) bool） |
+| func ArrayReverse\[T any\](array []T) []T                                        | 数组反转                                |
+| func ArrayBubbleSort\[T any\](array []T, less func(array []T, i, j int) bool)    | 数组进行冒泡排序（仅需实现less方法）                |
+| func ArrayInsertionSort\[T any\](array []T, less func(array []T, i, j int) bool) | 数组进行插入排序（仅需实现less方法）                |
+| func ArrayHeapSort\[T any\](array []T, less func(array []T, i, j int) bool)      | 数组进行堆排序（仅需实现less方法）                 |
+| func ArrayQuickSort\[T any\](array []T, less func(array []T, i, j int) bool)     | 数组进行快速排序（仅需实现less方法）                |
+| func ArraySort\[T any\](array []T, less func(array []T, i, j int) bool)          | 数组进行go原生排序（仅需实现less方法）              |
 
 * Code：[array.go](https://github.com/tiancheng92/gf/blob/main/array.go)
 * Test：[array_test.go](https://github.com/tiancheng92/gf/blob/main/array_test.go)
