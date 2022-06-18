@@ -5,7 +5,7 @@ title: tiancheng92/gf库使用说明
 
 # 项目简介
 
-* gf包 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
+* gf库 是一个容纳一些比较常用的函数的库，主要用于简化 Go 编程。
 * 项目地址：[tiancheng92/gf](https://github.com/tiancheng92/gf)
 
 <!--more-->
