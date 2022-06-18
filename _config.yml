@@ -207,8 +207,8 @@ defaults:
       type: posts
     values:
       layout: article
-      sharing: true
-      license: true
+      sharing: false
+      license: false
       aside:
         toc: true
       show_edit_on_github: false
