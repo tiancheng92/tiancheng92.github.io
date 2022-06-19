@@ -1,7 +1,7 @@
 ---
 layout: article
 title: tiancheng92/requests库使用说明
-categories: [golang, package]
+tags: [golang, package]
 ---
 
 # 项目简介
