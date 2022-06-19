@@ -28,7 +28,7 @@
     "eslint": "eslint \"_includes/**/*.js\"",
     "eslint-fix": "eslint \"_includes/**/*.js\" --fix",
     "stylelint": "stylelint --syntax scss \"_sass/**/*.scss\"",
-    "stylelint-fix": "stylelint --syntax scss \"_sass/**/*.scss\" --fix",
+    "stylelint-fix": "stylelint --syntax scss \"_sass/**/*.scss\" --fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -41,10 +41,5 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-scss": "^3.14.2"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
