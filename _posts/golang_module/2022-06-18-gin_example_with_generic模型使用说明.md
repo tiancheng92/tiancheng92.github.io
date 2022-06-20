@@ -54,7 +54,7 @@ cd $GOPATH/src/gin-example-with-generic
 go run -tags=go_json -gcflags=-l=4 -ldflags=-s -w ./cmd/cmd.go
 ```
 
-### 项目的运行信息和已存在的API
+### 项目的运行信息
 
 ```text
 2022/06/18 12:51:24 maxprocs: Leaving GOMAXPROCS=8: CPU quota undefined
@@ -89,7 +89,7 @@ go run -tags=go_json -gcflags=-l=4 -ldflags=-s -w ./cmd/cmd.go
 [GIN-debug] DELETE /api/v1/user/:pk          --> gin_example_with_generic/controller/api/v1.UserInterface.Delete-fm (5 handlers)
 ```
 
-# 项目目录结构说明
+# 项目目录结构
 
 ```text
 ├── cmd                             // 程序入口
@@ -136,5 +136,52 @@ go run -tags=go_json -gcflags=-l=4 -ldflags=-s -w ./cmd/cmd.go
     └── result                      // 返回结构体
 ```
 
+# 各个模块说明
+
+## 泛型实现
+
 待补充...
 {:.error}
+
+## 分页
+
+待补充...
+{:.error}
+
+## 参数绑定
+
+待补充...
+{:.error}
+
+## 参数校验
+
+待补充...
+{:.error}
+
+## 数据渲染
+
+待补充...
+{:.error}
+
+## 中间件
+
+待补充...
+{:.error}
+
+## 错误处理以及错误码
+
+待补充...
+{:.error}
+
+# 构建相关
+
+模型内建了自己的json包，支持使用[go_json](https://github.com/goccy/go-json)或[json-iterator](https://github.com/json-iterator/go)
+进行json解析。
+{:.info}
+
+| json解析方式                    | 构建约束                        |
+|-----------------------------|-----------------------------|
+| encoding/json               | go build ...                |
+| github.com/goccy/go-json    | go build -tags=go_json ...  |
+| github.com/json-iterator/go | go build -tags=jsoniter ... |
+
