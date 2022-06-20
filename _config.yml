@@ -118,27 +118,18 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: valine # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
     shortname: # the Disqus shortname for the site
 
-  ## Gitalk
-  # please refer to https://github.com/gitalk/gitalk for more info.
-  gitalk:
-    clientID    : cdd4a4f7e1601c1ae86f # GitHub Application Client ID
-    clientSecret: 06968e78dd490bdf436680b51c042f1ccad68826 # GitHub Application Client Secret
-    repository  : tiancheng92.github.io # GitHub repo
-    owner       : tiancheng92 # GitHub repo owner
-    admin       : tiancheng92
-
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
   valine:
-    app_id      : # LeanCloud App id
-    app_key     : # LeanCloud App key
-    placeholder : # Prompt information
+    app_id      : SoiDl7vXjSCx30JwCLmecMf9-gzGzoHsz # LeanCloud App id
+    app_key     : PERbjEnGOBGyJIBJfk2OMKye # LeanCloud App key
+    placeholder : 欢迎评论 # Prompt information
     visitor     : # false (default)
     meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
 
