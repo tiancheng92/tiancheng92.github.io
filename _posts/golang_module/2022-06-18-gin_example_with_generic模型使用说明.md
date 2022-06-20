@@ -15,7 +15,7 @@ tags: [golang, module]
 
 ## 必要组件
 
-* `mysql`{:.info} >= `5.7`
+* `mysql`{:.info}
 
 ## 安装
 
@@ -249,35 +249,122 @@ type ReadOnlyControllerInterface[M ModelInterface] interface {
   结构体后对接口中的方法进行重写或新增，参考[controller/api/v1/user.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/controller/api/v1/user.go)
   。
 
-## 分页
-
-待补充...
-{:.error}
-
 ## 参数绑定
 
-待补充...
-{:.error}
+| 函数签名                                                     | 描述             |
+|:---------------------------------------------------------|----------------|
+| func Body(ctx *gin.Context, ptr any) error               | 把Body数据绑定到结构体  |
+| func Query(ctx *gin.Context, ptr any) error              | 把Query数据绑定到结构体 |
+| func ParamsID(ctx *gin.Context, key string) (int, error) | 获取Param中的ID    |
+| func PaginateQuery(ctx *gin.Context) *paginate.Query     | 获取分页数据         |
+
+* Code：
+  [pkg/http/bind/request.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/bind/request.go)
 
 ## 参数校验
 
-待补充...
-{:.error}
+* gin_example_with_generic模型使用[validator](https://github.com/go-playground/validator)进行参数校验，并对其进行了二次分装。
+* 默认支持了中、英、日语言（仅需在配置文件的`I18n.Locale`字段中进行设置）
+* 支持自定义翻译与自定义校验规则定义
+* Code：
+  [pkg/validator/validator.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/validator/validator.go)
 
 ## 数据渲染
 
-待补充...
-{:.error}
+* 任意数据均通过
+  [Response(ctx *gin.Context, rawData ...any)](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/render/result.go)
+  进行渲染，并自动根据请求的accept头进行格式化（针对rawData的不同类型会有不同的处理方式）。
+
+### 普通数据
+
+* 如果rawData类型既没有实现
+  [PaginateInterface](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/render/result.go)
+  接口也不是Error类型，则数据原样返回
+
+```json
+{
+  "data": {},
+  "msg": "Success",
+  "code": 100000
+}
+```
+
+### error数据
+
+* 如果rawData类型为Error类型，且实现了[Coder](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/errors/code.go)
+  接口，则返回对应的错误码和错误信息，否则返回默认错误码（500）和默认错误信息
+* 如果http_code >= 500，则会在console中打印堆栈信息（需启用`handle_error`中间件）
+
+```json
+{
+  "data": "record not found",
+  "msg": "数据未找到",
+  "code": 100008
+}
+```
+
+### 分页数据
+
+* 如果rawData类型实现了
+  [PaginateInterface](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/render/result.go)
+  接口，则返回分页数据
+
+```json
+{
+  "data": {
+    "items": [],
+    "paginate": {
+      "total": 0,
+      "page": 1,
+      "page_size": 20
+    }
+  },
+  "msg": "Success",
+  "code": 100000
+}
+```
+
+## 分页
+
+### 通用参数
+
+| Query参数名  | 描述                                                                |
+|:----------|:------------------------------------------------------------------|
+| search    | 全文模糊搜索（后端需定义允许模糊搜索的字段）                                            |
+| page      | 页码（默认1）                                                           |
+| page_size | 每页大小（默认20）                                                        |
+| order_by  | 排序对象（默认id）                                                        |
+| order     | 排序参数（desc:倒序、asc：正序）（默认倒序）                                        |
+| all_data  | 为true时忽略分页参数（"", "false", "False", "FALSE", "0" 皆为false）（默认false） |
+
+### 指定字段搜索（字段名均以name为例）
+
+| Query参数名  | 描述     | 举例             |
+|:----------|:-------|:---------------|
+| 字段名       | 等于     | name=abc       |
+| 字段名__ne   | 不等于    | name__ne=abc   |
+| 字段名__gt   | 大于     | name__gt=abc   |
+| 字段名__gte  | 大于等于   | name__gte=abc  |
+| 字段名__lt   | 小于     | name__lt=abc   |
+| 字段名__lte  | 小于等于   | name__lte=abc  |
+| 字段名__sw   | 以...开头 | name__sw=abc   |
+| 字段名__ew   | 以...结尾 | name__ew=abc   |
+| 字段名__like | 包含     | name__like=abc |
+
+### JSON字段搜索
+
+| Query参数名           | 描述                |
+|:-------------------|:------------------|
+| 字段名__json_contains | JSON列表字段包含指定值     |
+| 字段名__json_extract  | JSON字段中的指定字段等于指定值 |
 
 ## 中间件
 
-待补充...
-{:.error}
-
-## 错误处理以及错误码
-
-待补充...
-{:.error}
+| 中间件          | 描述     | 路径                                                                                                                                                                     |
+|:-------------|:-------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cross_domain | 跨域     | [pkg/http/middleware/cross_domain/cross_domain.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/middleware/cross_domain/cross_domain.go) |
+| log          | Gin日志  | [pkg/http/middleware/logging/log.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/middleware/logging/log.go)                             |
+| handle_error | 错误统一处理 | [pkg/http/middleware/handle_error/handle_error.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/middleware/handle_error/handle_error.go) |
 
 # 构建相关
 
