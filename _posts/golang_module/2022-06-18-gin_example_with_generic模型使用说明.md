@@ -1,6 +1,7 @@
 ---
 layout: article
 title: gin_example_with_generic模型使用说明
+key: gin_example_with_generic
 tags: [golang, module]
 ---
 
