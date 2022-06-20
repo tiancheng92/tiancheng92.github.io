@@ -3,6 +3,8 @@ layout: article
 title: gin_example_with_generic模型使用说明
 key: gin_example_with_generic
 tags: [golang, module]
+sharing: true
+show_subscribe: true
 ---
 
 # 项目简介
