@@ -13,7 +13,7 @@
     appKey = options.appKey;
     appClass = options.appClass;
     AV.init({
-      serverURLs: 'https://soidl7vx.lc-cn-n1-shared.com',
+      serverURLs: 'https://avoscloud.com',
       appId: appId,
       appKey: appKey
     });
