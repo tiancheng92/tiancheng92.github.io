@@ -369,10 +369,10 @@ type ReadOnlyControllerInterface[M ModelInterface] interface {
 
 #### JSON字段搜索
 
-| Query参数名           | 描述                                     | 举例                                                                                       |
-|:-------------------|:---------------------------------------|:-----------------------------------------------------------------------------------------|
-| 字段名__json_contains | JSON列表字段包含指定值                          | name__json_contains=jack                                                                 |
-| 字段名__json_extract  | JSON字段中的指定字段等于指定值(json的key与value以//分隔) | name__json_extract=$."www.baidu.com"//1  or name__json_extract=$\[*\]."www.baidu.com"//1 |
+| Query参数名           | 描述                                     | 举例                                                                                         |
+|:-------------------|:---------------------------------------|:-------------------------------------------------------------------------------------------|
+| 字段名__json_contains | JSON列表字段包含指定值                          | name__json_contains=jack                                                                   |
+| 字段名__json_extract  | JSON字段中的指定字段等于指定值(json的key与value以//分隔) | name__json_extract=\$."www.baidu.com"//1  or name__json_extract=\$\[*\]."www.baidu.com"//1 |
 
 ### 中间件
 
