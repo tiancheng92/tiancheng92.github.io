@@ -50,6 +50,17 @@ I18n:
   Locale: "zh"            ## 国际化，zh en ja
 ```
 
+### 构建
+
+* 模型内建了自己的json包，支持使用[go_json](https://github.com/goccy/go-json)或[json-iterator](https://github.com/json-iterator/go)
+  进行json解析。
+
+| json解析方式                    | 构建约束                        |
+|-----------------------------|-----------------------------|
+| encoding/json               | go build ...                |
+| github.com/goccy/go-json    | go build -tags=go_json ...  |
+| github.com/json-iterator/go | go build -tags=jsoniter ... |
+
 ### 运行
 
 ```shell
@@ -261,6 +272,7 @@ type ReadOnlyControllerInterface[M ModelInterface] interface {
 | func ParamsID(ctx *gin.Context, key string) (int, error) | 获取Param中的ID    |
 | func PaginateQuery(ctx *gin.Context) *paginate.Query     | 获取分页数据         |
 
+* 以上函数均是对gin.bind的二次分装，并对绑定过程中发生的错误进行了渲染返回，故用户在发生参数绑定错误后，无需手动渲染错误返回直接return即可。
 * Code：
   [pkg/http/bind/request.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/bind/request.go)
 
@@ -340,26 +352,26 @@ type ReadOnlyControllerInterface[M ModelInterface] interface {
 | order     | 排序参数（desc:倒序、asc：正序）（默认倒序）                                        |
 | all_data  | 为true时忽略分页参数（"", "false", "False", "FALSE", "0" 皆为false）（默认false） |
 
-#### 指定字段搜索（字段名均以name为例）
+#### 指定字段搜索
 
-| Query参数名  | 描述     | 举例             |
-|:----------|:-------|:---------------|
-| 字段名       | 等于     | name=abc       |
-| 字段名__ne   | 不等于    | name__ne=abc   |
-| 字段名__gt   | 大于     | name__gt=abc   |
-| 字段名__gte  | 大于等于   | name__gte=abc  |
-| 字段名__lt   | 小于     | name__lt=abc   |
-| 字段名__lte  | 小于等于   | name__lte=abc  |
-| 字段名__sw   | 以...开头 | name__sw=abc   |
-| 字段名__ew   | 以...结尾 | name__ew=abc   |
-| 字段名__like | 包含     | name__like=abc |
+| Query参数名  | 描述     | 举例                        | SQL                                             |
+|:----------|:-------|:--------------------------|:------------------------------------------------|
+| 字段名       | 等于     | name=abc // name=a&name=b | where name = 'abc' // where name in \['a','b'\] |
+| 字段名__ne   | 不等于    | name__ne=abc              | where name != 'abc'                             |
+| 字段名__gt   | 大于     | name__gt=abc              | where name > 'abc'                              |
+| 字段名__gte  | 大于等于   | name__gte=abc             | where name >= 'abc'                             |
+| 字段名__lt   | 小于     | name__lt=abc              | where name < 'abc'                              |
+| 字段名__lte  | 小于等于   | name__lte=abc             | where name <= 'abc'                             |
+| 字段名__sw   | 以...开头 | name__sw=abc              | where name like 'abc%'                          |
+| 字段名__ew   | 以...结尾 | name__ew=abc              | where name like '%abc'                          |
+| 字段名__like | 包含     | name__like=abc            | where name like '%abc%'                         |
 
 #### JSON字段搜索
 
-| Query参数名           | 描述                |
-|:-------------------|:------------------|
-| 字段名__json_contains | JSON列表字段包含指定值     |
-| 字段名__json_extract  | JSON字段中的指定字段等于指定值 |
+| Query参数名           | 描述                                     | 举例                                                                                      |
+|:-------------------|:---------------------------------------|:----------------------------------------------------------------------------------------|
+| 字段名__json_contains | JSON列表字段包含指定值                          | name__json_contains=jack                                                                |
+| 字段名__json_extract  | JSON字段中的指定字段等于指定值(json的key与value以//分隔) | name__json_extract=$."www.baidu.com"//1  or name__json_extract=\[*\]."www.baidu.com"//1 |
 
 ### 中间件
 
@@ -369,15 +381,21 @@ type ReadOnlyControllerInterface[M ModelInterface] interface {
 | log          | Gin日志  | [pkg/http/middleware/logging/log.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/middleware/logging/log.go)                             |
 | handle_error | 错误统一处理 | [pkg/http/middleware/handle_error/handle_error.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/http/middleware/handle_error/handle_error.go) |
 
-## 构建相关
+### Errors
 
-模型内建了自己的json包，支持使用[go_json](https://github.com/goccy/go-json)或[json-iterator](https://github.com/json-iterator/go)
-进行json解析。
-{:.info}
+* 本模型中的errors包是对[pkg/errors](https://github.com/pkg/errors)的二次分装
+* 在原本errors包的基础上添加了WithCode方法，用于设置错误码（多次调用记录最新的错误码，但堆栈信息只保留第一次调用时的）
+* 错误码的定义在
+  [pkg/ecode/base.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/ecode/base.go)
+  中，用户只需按规则定义好错误码并执行`codegen -type=int`即可自动生成注册代码
+* Code：
+  [pkg/errors](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/errors)
+  、[pkg/ecode](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/ecode)
+  、[tools/codegen/main.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/tools/codegen/main.go)
 
-| json解析方式                    | 构建约束                        |
-|-----------------------------|-----------------------------|
-| encoding/json               | go build ...                |
-| github.com/goccy/go-json    | go build -tags=go_json ...  |
-| github.com/json-iterator/go | go build -tags=jsoniter ... |
+### AppLog
+
+* 本模型使用[zap](go.uber.org/zap)包进行app日志处理
+* Code：
+  [pkg/log/app_log.go](https://github.com/tiancheng92/gin_example_with_generic/blob/main/pkg/log/app_log.go)
 
