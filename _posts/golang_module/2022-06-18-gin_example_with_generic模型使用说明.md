@@ -5,6 +5,7 @@ key: gin_example_with_generic
 tags: [golang, module]
 sharing: true
 show_subscribe: true
+modify_date: 2020-06-21 09:52:03 +0800
 ---
 
 ## 项目简介
